@@ -35,7 +35,7 @@ fn main() {
         refract_depth: 6,
         shadow_samples: 16,
         gloss_samples: 8,
-        pixel_samples: 1,
+        pixel_samples: 2,
     };
 
     let scene_config = my_scene::get_scene();
