@@ -1,6 +1,4 @@
 use rand::{Rng};
-//use rand::{thread_rng};
-use wasi_rng::WasiRng;
 use light::light::Light;
 use vec3::Vec3;
 
@@ -13,8 +11,7 @@ pub struct SphereLight {
 
 impl Light for SphereLight {
     fn position(&self) -> Vec3 {
-        //let mut rng = thread_rng();
-        let mut rng = WasiRng;
+        let mut rng = ::util::get_rng();
 
         let jitter = Vec3 {
             x: self.radius * (rng.gen::<f64>() - 0.5),

@@ -6,8 +6,6 @@ use std::ops::Deref;
 use std::sync::Arc;
 use vec3::Vec3;
 use rand::{Rng};
-//use rand::{thread_rng};
-use wasi_rng::WasiRng;
 
 pub static EPSILON: f64 = ::std::f64::EPSILON * 10000.0;
 
@@ -47,8 +45,7 @@ impl Renderer {
 
     fn render_tile(camera: Camera, scene: &Scene, options: RenderOptions, tile_factory: SurfaceFactory) -> Surface {
         let mut tile = tile_factory.create();
-        //let mut rng = thread_rng();
-        let mut rng = WasiRng;
+        let mut rng = ::util::get_rng();
         let pixel_samples = options.pixel_samples;
 
         eprintln!("subsurface {},{}", tile.x_off, tile.y_off);

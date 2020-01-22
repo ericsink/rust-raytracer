@@ -10,4 +10,7 @@ authors = [
 image = "*"
 num = "*"
 rand = "*"
+
+[target.'cfg(target_os = "wasi")'.dependencies]
 wasi-rng = "*"
+

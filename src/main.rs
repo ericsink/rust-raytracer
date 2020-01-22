@@ -3,6 +3,8 @@
 extern crate image;
 extern crate num;
 extern crate rand;
+
+#[cfg(target_os = "wasi")]
 extern crate wasi_rng;
 
 use std::sync::Arc;
