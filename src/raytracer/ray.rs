@@ -114,7 +114,6 @@ fn it_gets_the_nearest_hit() {
         lights: lights,
         background: Vec3::one(),
         octree: octree,
-        skybox: None
     };
 
     let intersecting_ray = Ray::new(

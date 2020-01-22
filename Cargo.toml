@@ -9,8 +9,5 @@ authors = [
 [dependencies]
 image = "*"
 num = "*"
-num_cpus = "*"
 rand = "*"
-rustc-serialize = "*"
-threadpool = "*"
-time = "*"
+wasi-rng = "*"

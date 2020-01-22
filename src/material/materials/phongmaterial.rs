@@ -17,7 +17,7 @@ pub struct PhongMaterial {
     pub shininess: f64,     // Size of Phong specular highlight
     pub glossiness: f64,    // How glossy reflections are. 0 for non-glossy surfaces.
     pub ior: f64,           // Index of refraction
-    pub diffuse_texture: Option<Box<Texture+Send+Sync>>
+    pub diffuse_texture: Option<Box<dyn Texture+Send+Sync>>
 }
 
 impl Material for PhongMaterial {

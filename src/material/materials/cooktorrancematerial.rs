@@ -19,7 +19,7 @@ pub struct CookTorranceMaterial {
     pub glossiness: f64,     // How glossy reflections are. 0 for non-glossy surfaces.
     pub gauss_constant: f64, // Controls curve of distribution of microfacets
     pub ior: f64,            // Index of refraction, also used for specular highlights
-    pub diffuse_texture: Option<Box<Texture+Send+Sync>>
+    pub diffuse_texture: Option<Box<dyn Texture+Send+Sync>>
 }
 
 impl Material for CookTorranceMaterial {

@@ -28,7 +28,6 @@ impl<T> FromIterator<T> for Octree<T> where T: PartialBoundingBox {
         // For a k-d tree: 8 + 1.3 * log2(N)
         let depth = (1.2 * (finites.len() as f64).log(8.0)).round() as i32;
 
-        println!("Octree maximum depth {}", depth);
         let mut root_node = OctreeNode::new(bounds, depth);
         for (i, prim) in finites.iter().enumerate() {
             root_node.insert(i, prim.partial_bounding_box().unwrap());

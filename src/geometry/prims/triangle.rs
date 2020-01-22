@@ -33,7 +33,7 @@ pub struct TriangleOptions {
     vertices: [Vec3; 3],
     normals: Option<[Vec3; 3]>,
     texinfo: Option<[UvValue; 3]>,
-    material: Option<Box<Material+Send+Sync>>,
+    material: Option<Box<dyn Material+Send+Sync>>,
 }
 
 fn get_auto_normals(v: [Vec3; 3]) -> [Vec3; 3] {
@@ -67,7 +67,7 @@ impl TriangleOptions {
         self
     }
 
-    pub fn material(&mut self, material: Box<Material+Send+Sync>) -> &mut Self {
+    pub fn material(&mut self, material: Box<dyn Material+Send+Sync>) -> &mut Self {
         self.material = Some(material);
         self
     }
@@ -96,7 +96,7 @@ pub struct Triangle {
     // Used in textured triangles, can be [UvValue; 3]::default() otherwise.
     texinfo: [UvValue; 3],
 
-    material: Box<Material+Send+Sync>
+    material: Box<dyn Material+Send+Sync>
 }
 
 impl PartialBoundingBox for Triangle {

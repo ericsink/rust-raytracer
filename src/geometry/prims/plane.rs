@@ -13,7 +13,7 @@ pub struct Plane {
     pub b: f64, // normal.y
     pub c: f64, // normal.z
     pub d: f64,
-    pub material: Box<Material+Send+Sync>
+    pub material: Box<dyn Material+Send+Sync>
 }
 
 impl PartialBoundingBox for Plane {

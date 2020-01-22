@@ -4,10 +4,10 @@ use raytracer::{Intersection, Ray};
 use scene::{Camera, Scene};
 use std::ops::Deref;
 use std::sync::Arc;
-use std::sync::mpsc::channel;
 use vec3::Vec3;
-use rand::{thread_rng, Rng};
-use threadpool::ThreadPool;
+use rand::{Rng};
+//use rand::{thread_rng};
+use wasi_rng::WasiRng;
 
 pub static EPSILON: f64 = ::std::f64::EPSILON * 10000.0;
 
@@ -22,7 +22,6 @@ pub struct RenderOptions {
 
 #[derive(Clone)]
 pub struct Renderer {
-    pub tasks: usize, // Minimum number of tasks to spawn.
     pub options: RenderOptions,
 }
 
@@ -33,42 +32,26 @@ impl Renderer {
                                        camera.image_height as usize,
                                        ColorRGBA::new_rgb(0, 0, 0));
 
-        let pool = ThreadPool::new(self.tasks);
-
-        let (tx, rx) = channel();
-
-        let mut jobs = 0;
-
         for subsurface_factory in surface.divide(128, 8) {
-            jobs += 1;
-
             let renderer_opts = self.options.clone();
-            let child_tx = tx.clone();
             let scene_local = shared_scene.clone();
             let camera_local = camera.clone();
 
-            pool.execute(move || {
-                let scene = scene_local.deref();
-                let _ = child_tx.send(Renderer::render_tile(camera_local, scene,
-                    renderer_opts, subsurface_factory)).unwrap();
-            });
-        }
-        drop(tx);
-
-        let start_time = ::time::get_time();
-
-        for (i, subsurface) in rx.iter().enumerate() {
+            let scene = scene_local.deref();
+            let subsurface = Renderer::render_tile(camera_local, scene, renderer_opts, subsurface_factory);
             surface.merge(&subsurface);
-            ::util::print_progress("Tile", start_time.clone(), (i + 1) as usize, jobs);
         }
+
         surface
     }
 
     fn render_tile(camera: Camera, scene: &Scene, options: RenderOptions, tile_factory: SurfaceFactory) -> Surface {
         let mut tile = tile_factory.create();
-        let mut rng = thread_rng();
+        //let mut rng = thread_rng();
+        let mut rng = WasiRng;
         let pixel_samples = options.pixel_samples;
 
+        eprintln!("subsurface {},{}", tile.x_off, tile.y_off);
         for rel_y in 0usize..tile.height {
             let abs_y = camera.image_height as usize - (tile.y_off + rel_y) - 1;
             for rel_x in 0usize..tile.width {
@@ -136,12 +119,7 @@ impl Renderer {
 
                 result
             },
-            None => {
-                match scene.skybox {
-                    Some(ref skybox) => skybox.color(ray.direction),
-                    None => scene.background
-                }
-            }
+            None => scene.background
         }
     }
 
@@ -186,7 +164,7 @@ impl Renderer {
     }
 
     fn shadow_intensity(scene: &Scene, hit: &Intersection,
-                        light: &Box<Light+Send+Sync>, shadow_samples: u32) -> Vec3 {
+                        light: &Box<dyn Light+Send+Sync>, shadow_samples: u32) -> Vec3 {
 
         if shadow_samples <= 0 { return Vec3::one() }
 
@@ -262,7 +240,6 @@ fn it_renders_the_background_of_an_empty_scene() {
         lights: vec!(),
         octree: vec!().into_iter().collect(),
         background: Vec3 { x: 1.0, y: 0.0, z: 0.0 },
-        skybox: None
     };
 
     let shared_scene = Arc::new(test_scene);

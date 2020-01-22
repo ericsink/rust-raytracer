@@ -12,7 +12,7 @@ use material::materials::FlatMaterial;
 pub struct Sphere {
     pub center: Vec3,
     pub radius: f64,
-    pub material: Box<Material+Send+Sync>
+    pub material: Box<dyn Material+Send+Sync>
 }
 
 impl PartialBoundingBox for Sphere {

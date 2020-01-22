@@ -9,7 +9,7 @@ pub trait Prim: PartialBoundingBox {
     fn mut_transform(&mut self, transform: &Transform);
 }
 
-impl<'a> PartialBoundingBox for Box<Prim+Send+Sync> {
+impl<'a> PartialBoundingBox for Box<dyn Prim+Send+Sync> {
     fn partial_bounding_box(&self) -> Option<BBox> {
         (**self).partial_bounding_box()
     }
