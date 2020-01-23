@@ -30,6 +30,8 @@ struct SceneConfig {
 }
 
 fn main() {
+    let start_time = std::time::Instant::now();
+
     let config = SceneConfig {
         size: (512, 512),
         fov: 30.0,
@@ -65,6 +67,9 @@ fn main() {
     };
 
     let image_data = renderer.render(camera, shared_scene);
+
+    let ms = start_time.elapsed().as_millis();
+    eprintln!("elapsed: {}", ms);
 
     util::export::to_ppm(&image_data).expect("ppm write failure");
 }
