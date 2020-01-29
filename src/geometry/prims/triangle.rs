@@ -115,7 +115,7 @@ impl Prim for Triangle {
         let det = e1.dot(&p);
 
         // if determinant is near zero, ray lies in plane of triangle
-        if det > -::std::f64::EPSILON && det < ::std::f64::EPSILON {
+        if det > -::core::f64::EPSILON && det < ::core::f64::EPSILON {
             return None
         }
 

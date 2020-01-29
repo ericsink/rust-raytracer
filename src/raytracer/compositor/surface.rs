@@ -1,10 +1,10 @@
-use std::cmp::min;
-use std::iter::repeat;
-use std::ops::{Index, IndexMut};
+use core::cmp::min;
+use core::iter::repeat;
+use core::ops::{Index, IndexMut};
 
 use raytracer::compositor::{ColorRGBA, SurfaceFactory};
 
-pub struct IterPixelMut<'a, T: 'a>(::std::slice::IterMut<'a, ColorRGBA<T>>);
+pub struct IterPixelMut<'a, T: 'a>(::core::slice::IterMut<'a, ColorRGBA<T>>);
 
 impl<'a, T> Iterator for IterPixelMut<'a, T> where T: 'a {
     type Item = &'a mut ColorRGBA<T>;

@@ -60,7 +60,7 @@ impl Material for PhongMaterial {
     }
 
     fn is_glossy(&self) -> bool {
-        self.glossiness > ::std::f64::EPSILON
+        self.glossiness > ::core::f64::EPSILON
     }
 
     fn glossiness(&self) -> f64 {

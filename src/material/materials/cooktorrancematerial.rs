@@ -1,4 +1,4 @@
-use std::f64::consts::PI;
+use core::f64::consts::PI;
 use material::{Material, Texture};
 use raytracer::compositor::ColorRGBA;
 use vec3::Vec3;
@@ -82,7 +82,7 @@ impl Material for CookTorranceMaterial {
     }
 
     fn is_glossy(&self) -> bool {
-        self.glossiness > ::std::f64::EPSILON
+        self.glossiness > ::core::f64::EPSILON
     }
 
     fn glossiness(&self) -> f64 {
