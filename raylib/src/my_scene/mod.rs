@@ -1,4 +1,5 @@
 #![cfg_attr(test, allow(dead_code))]
+use crate::prelude::*;
 use ::scene::{Camera, Scene};
 
 pub mod cornell;

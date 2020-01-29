@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 
+use crate::prelude::*;
 use geometry::bbox::{union_point, union_points, BBox, PartialBoundingBox};
 use geometry::prim::Prim;
 use material::Material;

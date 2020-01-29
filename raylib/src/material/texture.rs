@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use raytracer::compositor::ColorRGBA;
 
 pub trait Texture {

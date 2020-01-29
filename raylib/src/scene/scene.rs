@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use light::Light;
 use geometry::Prim;
 use raytracer::Octree;

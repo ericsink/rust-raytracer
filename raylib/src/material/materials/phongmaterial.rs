@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use material::{Material, Texture};
 use raytracer::compositor::ColorRGBA;
 use vec3::Vec3;

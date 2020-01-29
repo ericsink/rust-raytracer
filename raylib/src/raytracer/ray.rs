@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use core::f64::INFINITY;
 use raytracer::Intersection;
 use scene::Scene;

@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use light::Light;
 use raytracer::compositor::{ColorRGBA, Surface, SurfaceFactory};
 use raytracer::{Intersection, Ray};

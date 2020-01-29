@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use geometry::{BBox, PartialBoundingBox, Prim};
 use material::Material;
 use mat4::{Mat4, Transform};

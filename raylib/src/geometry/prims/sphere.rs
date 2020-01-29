@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use geometry::bbox::{BBox, PartialBoundingBox};
 use geometry::prim::Prim;
 use material::Material;

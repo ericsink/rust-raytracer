@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use material::Texture;
 use raytracer::compositor::{ColorRGBA, Channel};
 

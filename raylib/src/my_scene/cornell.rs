@@ -1,5 +1,6 @@
 #![allow(unused_imports)]
 
+use crate::prelude::*;
 use geometry::prim::{Prim};
 use geometry::prims::{Plane, Sphere, Triangle, TriangleOptions};
 use light::light::{Light};

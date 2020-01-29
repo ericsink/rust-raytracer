@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use geometry::{BBox, PartialBoundingBox};
 use raytracer::{Ray, Intersection};
 use mat4::Transform;

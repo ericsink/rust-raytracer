@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use core::f64::consts::PI;
 use material::{Material, Texture};
 use raytracer::compositor::ColorRGBA;

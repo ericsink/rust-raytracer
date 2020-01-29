@@ -1,9 +1,14 @@
+
+#![no_std]
+
 #![deny(unused_imports)]
 
-extern crate core;
+//extern crate core;
+extern crate alloc;
 extern crate num_traits;
 extern crate rand;
 
+mod prelude;
 mod geometry;
 mod light;
 mod material;
@@ -12,6 +17,8 @@ pub mod raytracer;
 mod scene;
 mod vec3;
 mod mat4;
+
+use crate::prelude::*;
 
 struct SceneConfig {
     size: (u32, u32),
