@@ -1,6 +1,5 @@
 #![deny(unused_imports)]
 
-extern crate image;
 extern crate num;
 extern crate rand;
 
