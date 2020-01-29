@@ -47,7 +47,7 @@ impl Renderer {
         let mut rng = ::util::get_rng();
         let pixel_samples = options.pixel_samples;
 
-        eprintln!("subsurface {},{}", tile.x_off, tile.y_off);
+        //eprintln!("subsurface {},{}", tile.x_off, tile.y_off);
         for rel_y in 0usize..tile.height {
             let abs_y = camera.image_height as usize - (tile.y_off + rel_y) - 1;
             for rel_x in 0usize..tile.width {
