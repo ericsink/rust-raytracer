@@ -19,7 +19,6 @@ mod vec3;
 mod mat4;
 
 pub use raytracer::compositor::Surface;
-pub use raytracer::compositor::Channel;
 
 use crate::prelude::*;
 

@@ -1,11 +1,10 @@
 use std::io::{self, Write};
-use raylib::{Surface, Channel};
+use raylib::Surface;
 
 pub fn to_ppm(surface: &Surface) -> io::Result<()> {
-    let channel_max: u8 = Channel::max_value();
     let header = format!(
         "P3 {} {} {}\n", surface.width, surface.height,
-        channel_max);
+        u8::max_value());
 
     let stdout = io::stdout();
     let mut f = stdout.lock();
