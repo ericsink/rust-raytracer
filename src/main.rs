@@ -7,8 +7,6 @@ extern crate rand;
 #[cfg(target_os = "wasi")]
 extern crate wasi_rng;
 
-use std::sync::Arc;
-
 mod geometry;
 mod light;
 mod material;
@@ -47,8 +45,7 @@ fn main() {
     let (image_width, image_height) = config.size;
     let fov = config.fov;
 
-    // Hackish solution for animator
-    let shared_scene = Arc::new(scene_config.get_scene());
+    let shared_scene = scene_config.get_scene();
 
     let camera = 
         scene_config.get_camera(image_width, image_height, fov)
@@ -66,7 +63,7 @@ fn main() {
         options: render_options,
     };
 
-    let image_data = renderer.render(camera, shared_scene);
+    let image_data = renderer.render(camera, &shared_scene);
 
     let ms = start_time.elapsed().as_millis();
     eprintln!("elapsed: {}", ms);

@@ -3,7 +3,6 @@ use raytracer::compositor::{ColorRGBA, Surface, SurfaceFactory};
 use raytracer::{Intersection, Ray};
 use scene::{Camera, Scene};
 use core::ops::Deref;
-use std::sync::Arc;
 use vec3::Vec3;
 use rand::{Rng};
 
@@ -24,7 +23,7 @@ pub struct Renderer {
 }
 
 impl Renderer {
-    pub fn render(&self, camera: Camera, shared_scene: Arc<Scene>) -> Surface {
+    pub fn render(&self, camera: Camera, shared_scene: &Scene) -> Surface {
 
         let mut surface = Surface::new(camera.image_width as usize,
                                        camera.image_height as usize,
@@ -239,7 +238,7 @@ fn it_renders_the_background_of_an_empty_scene() {
         background: Vec3 { x: 1.0, y: 0.0, z: 0.0 },
     };
 
-    let shared_scene = Arc::new(test_scene);
+    let shared_scene = &test_scene;
 
     let render_options = RenderOptions {
         reflect_depth: 1,
