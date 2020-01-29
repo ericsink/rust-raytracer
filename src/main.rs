@@ -1,6 +1,6 @@
 #![deny(unused_imports)]
 
-extern crate num;
+extern crate num_traits;
 extern crate rand;
 
 #[cfg(target_os = "wasi")]

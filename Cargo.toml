@@ -7,7 +7,7 @@ authors = [
 ]
 
 [dependencies]
-num = "*"
+num-traits = "*"
 rand = "*"
 
 [target.'cfg(target_os = "wasi")'.dependencies]
