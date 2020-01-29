@@ -13,10 +13,13 @@ mod geometry;
 mod light;
 mod material;
 mod my_scene;
-pub mod raytracer;
+mod raytracer;
 mod scene;
 mod vec3;
 mod mat4;
+
+pub use raytracer::compositor::Surface;
+pub use raytracer::compositor::Channel;
 
 use crate::prelude::*;
 
@@ -30,7 +33,7 @@ struct SceneConfig {
     pixel_samples: u32,
 }
 
-pub fn run(mut rng: Box<dyn rand::RngCore>) -> raytracer::compositor::Surface {
+pub fn run(mut rng: Box<dyn rand::RngCore>) -> Surface {
     let config = SceneConfig {
         size: (512, 512),
         fov: 30.0,
