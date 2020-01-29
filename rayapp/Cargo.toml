@@ -1,6 +1,7 @@
 [package]
 name = "rayapp"
 version = "0.1.0"
+edition = "2018"
 authors = [
     "ng.guoyou@gmail.com",
     "stacey.ell@gmail.com"

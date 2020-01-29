@@ -1,8 +1,8 @@
 use crate::prelude::*;
-use light::Light;
-use geometry::Prim;
-use raytracer::Octree;
-use vec3::Vec3;
+use crate::light::Light;
+use crate::geometry::Prim;
+use crate::raytracer::Octree;
+use crate::vec3::Vec3;
 
 pub struct Scene {
     pub lights: Vec<Box<dyn Light+Send+Sync>>,

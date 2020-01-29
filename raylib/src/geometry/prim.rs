@@ -1,7 +1,7 @@
 use crate::prelude::*;
-use geometry::{BBox, PartialBoundingBox};
-use raytracer::{Ray, Intersection};
-use mat4::Transform;
+use crate::geometry::{BBox, PartialBoundingBox};
+use crate::raytracer::{Ray, Intersection};
+use crate::mat4::Transform;
 
 pub trait Prim: PartialBoundingBox {
     fn intersects<'a>(&'a self, ray: &Ray, t_min: f64, t_max: f64) -> Option<Intersection<'a>>;

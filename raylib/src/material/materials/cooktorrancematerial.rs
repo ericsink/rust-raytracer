@@ -1,8 +1,8 @@
 use crate::prelude::*;
 use core::f64::consts::PI;
-use material::{Material, Texture};
-use raytracer::compositor::ColorRGBA;
-use vec3::Vec3;
+use crate::material::{Material, Texture};
+use crate::raytracer::compositor::ColorRGBA;
+use crate::vec3::Vec3;
 
 #[allow(dead_code)]
 #[derive(Clone)]

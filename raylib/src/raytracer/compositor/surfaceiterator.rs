@@ -1,4 +1,4 @@
-use raytracer::compositor::{ColorRGBA, SurfaceFactory};
+use crate::raytracer::compositor::{ColorRGBA, SurfaceFactory};
 
 
 pub struct SurfaceIterator {

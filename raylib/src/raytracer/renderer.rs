@@ -1,10 +1,10 @@
 use crate::prelude::*;
-use light::Light;
-use raytracer::compositor::{ColorRGBA, Surface, SurfaceFactory};
-use raytracer::{Intersection, Ray};
-use scene::{Camera, Scene};
+use crate::light::Light;
+use crate::raytracer::compositor::{ColorRGBA, Surface, SurfaceFactory};
+use crate::raytracer::{Intersection, Ray};
+use crate::scene::{Camera, Scene};
 use core::ops::Deref;
-use vec3::Vec3;
+use crate::vec3::Vec3;
 use rand::{Rng};
 
 pub static EPSILON: f64 = ::core::f64::EPSILON * 10000.0;

@@ -1,8 +1,8 @@
 use crate::prelude::*;
 use core::f64::INFINITY;
-use raytracer::Intersection;
-use scene::Scene;
-use vec3::Vec3;
+use crate::raytracer::Intersection;
+use crate::scene::Scene;
+use crate::vec3::Vec3;
 
 #[cfg(test)]
 use geometry::prim::Prim;

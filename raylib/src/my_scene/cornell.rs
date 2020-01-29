@@ -1,16 +1,16 @@
 #![allow(unused_imports)]
 
 use crate::prelude::*;
-use geometry::prim::{Prim};
-use geometry::prims::{Plane, Sphere, Triangle, TriangleOptions};
-use light::light::{Light};
-use light::lights::{PointLight, SphereLight};
-use material::materials::{CookTorranceMaterial, FlatMaterial, PhongMaterial};
-use material::Texture;
-use material::textures::{CheckerTexture, UVTexture};
-use raytracer::compositor::ColorRGBA;
-use scene::{Camera, Scene};
-use vec3::Vec3;
+use crate::geometry::prim::{Prim};
+use crate::geometry::prims::{Plane, Sphere, Triangle, TriangleOptions};
+use crate::light::light::{Light};
+use crate::light::lights::{PointLight, SphereLight};
+use crate::material::materials::{CookTorranceMaterial, FlatMaterial, PhongMaterial};
+use crate::material::Texture;
+use crate::material::textures::{CheckerTexture, UVTexture};
+use crate::raytracer::compositor::ColorRGBA;
+use crate::scene::{Camera, Scene};
+use crate::vec3::Vec3;
 
 // 10 primitives, octree is super inefficient for this scene
 pub fn get_camera(image_width: u32, image_height: u32, fov: f64) -> Camera {

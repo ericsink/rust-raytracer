@@ -1,13 +1,13 @@
 use crate::prelude::*;
-use geometry::bbox::{BBox, PartialBoundingBox};
-use geometry::prim::Prim;
-use material::Material;
-use mat4::{Mat4, Transform};
-use raytracer::{Ray, Intersection};
-use vec3::Vec3;
+use crate::geometry::bbox::{BBox, PartialBoundingBox};
+use crate::geometry::prim::Prim;
+use crate::material::Material;
+use crate::mat4::{Mat4, Transform};
+use crate::raytracer::{Ray, Intersection};
+use crate::vec3::Vec3;
 
 #[cfg(test)]
-use material::materials::FlatMaterial;
+use crate::material::materials::FlatMaterial;
 
 #[allow(dead_code)]
 pub struct Sphere {

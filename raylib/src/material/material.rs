@@ -1,4 +1,4 @@
-use vec3::Vec3;
+use crate::vec3::Vec3;
 
 /// TODO: Move specular/transmissive properties into traits
 pub trait Material {

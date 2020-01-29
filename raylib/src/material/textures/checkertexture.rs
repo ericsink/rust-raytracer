@@ -1,6 +1,6 @@
 use crate::prelude::*;
-use material::Texture;
-use raytracer::compositor::ColorRGBA;
+use crate::material::Texture;
+use crate::raytracer::compositor::ColorRGBA;
 
 
 #[derive(Clone)]

@@ -1,9 +1,9 @@
 use crate::prelude::*;
 use core::slice::Iter;
 use core::iter::FromIterator;
-use geometry::{BBox, PartialBoundingBox};
-use raytracer::Ray;
-use vec3::Vec3;
+use crate::geometry::{BBox, PartialBoundingBox};
+use crate::raytracer::Ray;
+use crate::vec3::Vec3;
 
 //
 

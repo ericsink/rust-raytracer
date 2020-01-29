@@ -1,5 +1,5 @@
-use light::light::Light;
-use vec3::Vec3;
+use crate::light::light::Light;
+use crate::vec3::Vec3;
 
 #[allow(dead_code)]
 pub struct PointLight {

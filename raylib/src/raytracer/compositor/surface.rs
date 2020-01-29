@@ -3,7 +3,7 @@ use core::cmp::min;
 use core::iter::repeat;
 use core::ops::{Index, IndexMut};
 
-use raytracer::compositor::{ColorRGBA, SurfaceFactory};
+use crate::raytracer::compositor::{ColorRGBA, SurfaceFactory};
 
 pub struct IterPixelMut<'a, T: 'a>(::core::slice::IterMut<'a, ColorRGBA<T>>);
 

@@ -1,13 +1,13 @@
 #![allow(dead_code)]
 
-use geometry::bbox::BBox;
-use raytracer::Ray;
+use crate::geometry::bbox::BBox;
+use crate::raytracer::Ray;
 use core::cmp;
 use core::f64;
 use core::f64::consts::PI;
 use core::fmt;
 use core::ops::{Add, Mul, Sub};
-use vec3::Vec3;
+use crate::vec3::Vec3;
 
 /// Stored in row-major, M_(i, j) = i-th row and j-th column
 /// 0-indexed

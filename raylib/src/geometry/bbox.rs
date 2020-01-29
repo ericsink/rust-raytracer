@@ -1,6 +1,6 @@
 #![allow(dead_code)]
-use raytracer::Ray;
-use vec3::Vec3;
+use crate::raytracer::Ray;
+use crate::vec3::Vec3;
 
 #[derive(Clone, Copy, PartialEq)]
 pub struct BBox {

@@ -1,5 +1,5 @@
 use crate::prelude::*;
-use raytracer::compositor::ColorRGBA;
+use crate::raytracer::compositor::ColorRGBA;
 
 pub trait Texture {
     fn color(&self, u: f64, v: f64) -> ColorRGBA<f64>;

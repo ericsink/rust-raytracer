@@ -1,9 +1,9 @@
 use crate::prelude::*;
-use geometry::{BBox, PartialBoundingBox, Prim};
-use material::Material;
-use mat4::{Mat4, Transform};
-use raytracer::{Ray, Intersection};
-use vec3::Vec3;
+use crate::geometry::{BBox, PartialBoundingBox, Prim};
+use crate::material::Material;
+use crate::mat4::{Mat4, Transform};
+use crate::raytracer::{Ray, Intersection};
+use crate::vec3::Vec3;
 
 #[cfg(test)]
 use material::materials::FlatMaterial;

@@ -1,7 +1,7 @@
 use num_traits::{Float, ToPrimitive};
 use core::cmp::{min, max, Ord};
 use core::ops::{Add, Mul, Sub};
-use vec3::Vec3;
+use crate::vec3::Vec3;
 
 pub trait Channel: ToPrimitive {
     fn min_value() -> Self;

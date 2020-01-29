@@ -1,6 +1,6 @@
 use crate::prelude::*;
-use material::Material;
-use vec3::Vec3;
+use crate::material::Material;
+use crate::vec3::Vec3;
 
 pub struct Intersection<'a> {
     pub n: Vec3,

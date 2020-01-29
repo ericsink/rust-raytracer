@@ -1,6 +1,6 @@
 use crate::prelude::*;
-use material::Texture;
-use raytracer::compositor::{ColorRGBA, Channel};
+use crate::material::Texture;
+use crate::raytracer::compositor::{ColorRGBA, Channel};
 
 
 /// Maps the supplied (u, v) coordinate to the (red, green) color channels.
