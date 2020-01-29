@@ -2,11 +2,11 @@
 
 use geometry::bbox::BBox;
 use raytracer::Ray;
-use std::cmp;
-use std::f64;
-use std::f64::consts::PI;
-use std::fmt;
-use std::ops::{Add, Mul, Sub};
+use core::cmp;
+use core::f64;
+use core::f64::consts::PI;
+use core::fmt;
+use core::ops::{Add, Mul, Sub};
 use vec3::Vec3;
 
 /// Stored in row-major, M_(i, j) = i-th row and j-th column
@@ -336,7 +336,7 @@ impl Mat4 {
     }
 
     fn approx_eq(f1: f64, f2: f64) -> bool {
-        (f1 - f2).abs() < ::std::f64::EPSILON
+        (f1 - f2).abs() < ::core::f64::EPSILON
     }
 
     fn deg_to_rad(deg: f64) -> f64 {

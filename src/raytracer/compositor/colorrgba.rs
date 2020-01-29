@@ -1,6 +1,6 @@
 use num_traits::{Float, ToPrimitive};
-use std::cmp::{min, max, Ord};
-use std::ops::{Add, Mul, Sub};
+use core::cmp::{min, max, Ord};
+use core::ops::{Add, Mul, Sub};
 use vec3::Vec3;
 
 pub trait Channel: ToPrimitive {

@@ -1,4 +1,4 @@
-use std::f64::INFINITY;
+use core::f64::INFINITY;
 use raytracer::Intersection;
 use scene::Scene;
 use vec3::Vec3;

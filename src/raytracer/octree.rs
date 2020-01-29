@@ -1,5 +1,5 @@
-use std::slice::Iter;
-use std::iter::FromIterator;
+use core::slice::Iter;
+use core::iter::FromIterator;
 use geometry::{BBox, PartialBoundingBox};
 use raytracer::Ray;
 use vec3::Vec3;

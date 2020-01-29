@@ -2,12 +2,12 @@ use light::Light;
 use raytracer::compositor::{ColorRGBA, Surface, SurfaceFactory};
 use raytracer::{Intersection, Ray};
 use scene::{Camera, Scene};
-use std::ops::Deref;
+use core::ops::Deref;
 use std::sync::Arc;
 use vec3::Vec3;
 use rand::{Rng};
 
-pub static EPSILON: f64 = ::std::f64::EPSILON * 10000.0;
+pub static EPSILON: f64 = ::core::f64::EPSILON * 10000.0;
 
 #[derive(Clone, Copy)]
 pub struct RenderOptions {
