@@ -1,4 +1,4 @@
-use rand::{Rng};
+//use rand::{Rng};
 use light::light::Light;
 use vec3::Vec3;
 
@@ -11,8 +11,7 @@ pub struct SphereLight {
 
 impl Light for SphereLight {
     fn position(&self) -> Vec3 {
-        let mut rng = ::util::get_rng();
-
+        /*
         let jitter = Vec3 {
             x: self.radius * (rng.gen::<f64>() - 0.5),
             y: self.radius * (rng.gen::<f64>() - 0.5),
@@ -20,6 +19,8 @@ impl Light for SphereLight {
         };
 
         self.position + jitter
+        */
+        self.position
     }
 
     fn color(&self) -> Vec3 {

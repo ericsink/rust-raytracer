@@ -23,7 +23,7 @@ pub struct Renderer {
 }
 
 impl Renderer {
-    pub fn render(&self, camera: Camera, shared_scene: &Scene) -> Surface {
+    pub fn render(&self, camera: Camera, rng: &mut Box<dyn rand::RngCore>, shared_scene: &Scene) -> Surface {
 
         let mut surface = Surface::new(camera.image_width as usize,
                                        camera.image_height as usize,
@@ -35,16 +35,15 @@ impl Renderer {
             let camera_local = camera.clone();
 
             let scene = scene_local.deref();
-            let subsurface = Renderer::render_tile(camera_local, scene, renderer_opts, subsurface_factory);
+            let subsurface = Renderer::render_tile(camera_local, rng, scene, renderer_opts, subsurface_factory);
             surface.merge(&subsurface);
         }
 
         surface
     }
 
-    fn render_tile(camera: Camera, scene: &Scene, options: RenderOptions, tile_factory: SurfaceFactory) -> Surface {
+    fn render_tile(camera: Camera, rng: &mut Box<dyn rand::RngCore>, scene: &Scene, options: RenderOptions, tile_factory: SurfaceFactory) -> Surface {
         let mut tile = tile_factory.create();
-        let mut rng = ::util::get_rng();
         let pixel_samples = options.pixel_samples;
 
         //eprintln!("subsurface {},{}", tile.x_off, tile.y_off);
@@ -68,7 +67,7 @@ impl Renderer {
                         };
 
                         let ray = camera.get_ray(abs_x as f64 + j_x, abs_y as f64 + j_y);
-                        let result = Renderer::trace(scene, &ray, options, false);
+                        let result = Renderer::trace(rng, scene, &ray, options, false);
                         // Clamp subpixels for now to avoid intense aliasing when combined value is clamped later
                         // Should think of a better way to handle this
                         color = color + result.clamp(0.0, 1.0).scale(1.0 / (pixel_samples * pixel_samples) as f64);
@@ -81,7 +80,7 @@ impl Renderer {
         tile
     }
 
-    fn trace(scene: &Scene, ray: &Ray, options: RenderOptions, inside: bool) -> Vec3 {
+    fn trace(rng : &mut Box<dyn rand::RngCore>, scene: &Scene, ray: &Ray, options: RenderOptions, inside: bool) -> Vec3 {
         if options.reflect_depth <= 0 || options.refract_depth <= 0 { return Vec3::zero() }
 
         match ray.get_nearest_hit(scene) {
@@ -103,12 +102,12 @@ impl Renderer {
                     let refract_fresnel = 1.0 - reflect_fresnel;
 
                     if hit.material.is_reflective() {
-                        result = result + Renderer::global_reflection(scene, &hit, options, inside,
+                        result = result + Renderer::global_reflection(rng, scene, &hit, options, inside,
                                                                       &i, &n, reflect_fresnel);
                     }
 
                     if hit.material.is_refractive() {
-                        result = result + Renderer::global_transmission(scene, &hit, options, inside,
+                        result = result + Renderer::global_transmission(rng, scene, &hit, options, inside,
                                                                         &i, &n, refract_fresnel);
                     }
                 }
@@ -119,7 +118,7 @@ impl Renderer {
         }
     }
 
-    fn global_reflection(scene: &Scene, hit: &Intersection, options: RenderOptions, inside: bool,
+    fn global_reflection(rng : &mut Box<dyn rand::RngCore>, scene: &Scene, hit: &Intersection, options: RenderOptions, inside: bool,
                          i: &Vec3, n: &Vec3, reflect_fresnel: f64) -> Vec3 {
 
         let r = Vec3::reflect(&i, &n);
@@ -130,18 +129,18 @@ impl Renderer {
             // For glossy materials, average multiple perturbed reflection rays
             // Potential overflow by scaling after everything is done instead of scaling every iteration?
             (0..options.gloss_samples).fold(Vec3::zero(), |acc, _| {
-                let gloss_reflect_ray = reflect_ray.perturb(hit.material.glossiness());
-                acc + Renderer::trace(scene, &gloss_reflect_ray, next_reflect_options, inside)
+                let gloss_reflect_ray = reflect_ray.perturb(rng, hit.material.glossiness());
+                acc + Renderer::trace(rng, scene, &gloss_reflect_ray, next_reflect_options, inside)
             }).scale(1.0 / options.gloss_samples as f64)
         } else {
             // For mirror-like materials just shoot a perfectly reflected ray instead
-            Renderer::trace(scene, &reflect_ray, next_reflect_options, inside)
+            Renderer::trace(rng, scene, &reflect_ray, next_reflect_options, inside)
         };
 
         hit.material.global_specular(&reflection).scale(reflect_fresnel)
     }
 
-    fn global_transmission(scene: &Scene, hit: &Intersection, options: RenderOptions, inside: bool,
+    fn global_transmission(rng : &mut Box<dyn rand::RngCore>, scene: &Scene, hit: &Intersection, options: RenderOptions, inside: bool,
                            i: &Vec3, n: &Vec3, refract_fresnel: f64) -> Vec3 {
 
         let (t, actual_refract_fresnel) = match Vec3::refract(&i, &n, hit.material.ior(), inside) {
@@ -154,7 +153,7 @@ impl Renderer {
         // Offset ray origin by EPSILON * direction to avoid hitting self when refracting
         let refract_ray = Ray::new(hit.position + t.scale(EPSILON), t);
         let next_refract_options = RenderOptions { refract_depth: options.refract_depth - 1, ..options };
-        let refraction = Renderer::trace(scene, &refract_ray, next_refract_options, !inside);
+        let refraction = Renderer::trace(rng, scene, &refract_ray, next_refract_options, !inside);
 
         hit.material.global_transmissive(&refraction).scale(actual_refract_fresnel)
     }

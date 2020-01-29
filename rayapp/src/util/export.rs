@@ -1,5 +1,5 @@
 use std::io::{self, Write};
-use raytracer::compositor::{Surface, Channel};
+use raylib::raytracer::compositor::{Surface, Channel};
 
 pub fn to_ppm(surface: &Surface) -> io::Result<()> {
     let channel_max: u8 = Channel::max_value();

@@ -4,16 +4,12 @@ extern crate core;
 extern crate num_traits;
 extern crate rand;
 
-#[cfg(target_os = "wasi")]
-extern crate wasi_rng;
-
 mod geometry;
 mod light;
 mod material;
 mod my_scene;
-mod raytracer;
+pub mod raytracer;
 mod scene;
-mod util;
 mod vec3;
 mod mat4;
 
@@ -27,9 +23,7 @@ struct SceneConfig {
     pixel_samples: u32,
 }
 
-fn main() {
-    //let start_time = std::time::Instant::now();
-
+pub fn run(mut rng: Box<dyn rand::RngCore>) -> raytracer::compositor::Surface {
     let config = SceneConfig {
         size: (512, 512),
         fov: 30.0,
@@ -63,10 +57,7 @@ fn main() {
         options: render_options,
     };
 
-    let image_data = renderer.render(camera, &shared_scene);
+    let image_data = renderer.render(camera, &mut rng, &shared_scene);
 
-    //let ms = start_time.elapsed().as_millis();
-    //eprintln!("elapsed: {}", ms);
-
-    util::export::to_ppm(&image_data).expect("ppm write failure");
+    image_data
 }

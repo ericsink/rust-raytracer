@@ -1,5 +1,5 @@
 [package]
-name = "rust-raytracer"
+name = "rayapp"
 version = "0.1.0"
 authors = [
     "ng.guoyou@gmail.com",
@@ -7,9 +7,8 @@ authors = [
 ]
 
 [dependencies]
-num-traits = "*"
 rand = "*"
 
-[target.'cfg(target_os = "wasi")'.dependencies]
-wasi-rng = "*"
+[dependencies.raylib]
+path = "../raylib"
 

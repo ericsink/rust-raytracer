@@ -109,8 +109,7 @@ impl Vec3 {
 
     /// Generates a random vector across a uniform distribution using the answer found in
     /// http://stackoverflow.com/questions/5408276/python-uniform-spherical-distribution
-    pub fn random() -> Vec3 {
-        let mut rng = ::util::get_rng();
+    pub fn random(rng : &mut Box<dyn rand::RngCore>) -> Vec3 {
         let phi: f64 = rng.gen_range(0.0, 2.0 * ::core::f64::consts::PI);
         let costheta: f64 = rng.gen_range(-1.0, 1.0);
         let u: f64 = rng.gen_range(0.0, 1.0);
