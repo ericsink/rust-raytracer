@@ -8,6 +8,18 @@ extern crate alloc;
 extern crate num_traits;
 extern crate rand;
 
+/* maybe TODO
+extern crate wee_alloc;
+
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
+#[panic_handler]
+fn panic(_info: &core::panic::PanicInfo) -> ! {
+        loop {}
+}
+*/
+
 mod prelude;
 mod geometry;
 mod light;

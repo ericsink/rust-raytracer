@@ -7,7 +7,13 @@ authors = [
     "stacey.ell@gmail.com"
 ]
 
-[dependencies]
-num-traits = "*"
-rand = "*"
+[dependencies.rand]
+version="*"
+# TODO this brings in std
+#default-features = false
+
+[dependencies.num-traits]
+version="*"
+# TODO this brings in std
+#default-features = false
 
