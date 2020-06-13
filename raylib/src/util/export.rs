@@ -1,5 +1,5 @@
 use std::io::{self, Write};
-use raylib::Surface;
+use crate::Surface;
 
 pub fn to_ppm(surface: &Surface) -> io::Result<()> {
     let header = format!(

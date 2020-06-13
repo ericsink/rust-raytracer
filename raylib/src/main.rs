@@ -1,6 +1,4 @@
 
-#![no_std]
-
 #![deny(unused_imports)]
 
 //extern crate core;
@@ -81,4 +79,17 @@ pub fn run(mut rng: Box<dyn rand::RngCore>) -> Surface {
     let image_data = renderer.render(camera, &mut rng, &shared_scene);
 
     image_data
+}
+
+mod util;
+
+fn main() {
+    let start_time = std::time::Instant::now();
+
+    let image_data = run(util::get_rng());
+
+    let ms = start_time.elapsed().as_millis();
+    eprintln!("elapsed: {}", ms);
+
+    util::export::to_ppm(&image_data).expect("ppm write failure");
 }

@@ -1,19 +1,16 @@
 [package]
-name = "raylib"
+name = "raytracer"
 version = "0.1.0"
 edition = "2018"
 authors = [
     "ng.guoyou@gmail.com",
     "stacey.ell@gmail.com"
 ]
+metadata.wasm-opt = false
 
 [dependencies.rand]
 version="*"
-# TODO this brings in std
-#default-features = false
 
 [dependencies.num-traits]
 version="*"
-# TODO this brings in std
-#default-features = false
 
